@@ -1,0 +1,38 @@
+services:
+    accounts:
+        image: "eduardojrl/accounts:1.0"
+        container_name: accounts-ms 
+        ports: 
+            - "8080:8080"
+        deploy: 
+            resources:
+                limits:
+                    memory: 700m
+        networks:
+            - evilAssBanking
+    loans:
+        image: "eduardojrl/loans:1.0"
+        container_name: loans-ms 
+        ports: 
+            - "8090:8090"
+        deploy: 
+            resources:
+                limits:
+                    memory: 700m
+        networks:
+            - evilAssBanking
+    cards:
+        image: "eduardojrl/cards:1.0"
+        container_name: cards-ms 
+        ports: 
+            - "9000:9000"
+        deploy: 
+            resources:
+                limits:
+                    memory: 700m
+        networks:
+            - evilAssBanking
+    
+networks:
+    evilAssBanking:
+        driver: "bridge"
