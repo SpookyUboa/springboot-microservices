@@ -1,0 +1,11 @@
+build:
+  version: "1.0"
+
+accounts:
+  message: "Welcome to Evil Ass Banking - Accounts API - PRE Version"
+  contactDetails:
+    name: "Edu Romero - Lead Developer"
+    email: "edu@romero.com"
+  onCallSupport:
+    - +34 654321987
+    - +34 654987321
