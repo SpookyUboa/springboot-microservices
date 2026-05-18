@@ -2,7 +2,7 @@ build:
   version: "1.0"
 
 accounts:
-  message: "Welcome to Evil Ass Banking - Accounts API- PROD Version"
+  message: "Welcome to Evil Ass Banking - Accounts API - PROD Version"
   contactDetails:
     name: "Edu Romero - Lead Developer"
     email: "edu@romero.com"
