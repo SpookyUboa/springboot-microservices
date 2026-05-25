@@ -18,7 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 		info=@Info(
 				title="Accounts microservice REST API documentation",
 				description="Evil Ass Banking Accounts microservice REST API documentation",
-				version="1.0",
+				version="1.3",
 				contact=@Contact(
 						name="Edu Romero",
 						email="edu@romero.com",

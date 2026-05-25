@@ -115,7 +115,7 @@
 				<version>3.5.1</version>
 				<configuration>
 					<to>
-						<image>eduardojrl/${project.artifactId}:1.0</image>
+						<image>eduardojrl/${project.artifactId}:1.3</image>
 					</to>
 				</configuration>
 			</plugin>
@@ -124,7 +124,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>eduardojrl/${project.artifactId}:1.0</name>
+						<name>eduardojrl/${project.artifactId}:1.3</name>
 					</image>
 					<excludes>
 						<exclude>

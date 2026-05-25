@@ -1,5 +1,5 @@
 build:
-  version: "1.0"
+  version: "1.3"
 
 loans:
   message: "Welcome to Evil Ass Banking - Loans API - PRE Version"
