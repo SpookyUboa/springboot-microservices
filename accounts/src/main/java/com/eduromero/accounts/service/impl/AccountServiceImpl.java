@@ -10,6 +10,7 @@ import com.eduromero.accounts.exception.ResourceNotFoundException;
 import com.eduromero.accounts.repository.AccountRepository;
 import com.eduromero.accounts.repository.CustomerRepository;
 import com.eduromero.accounts.service.IAccountService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import com.eduromero.accounts.mapper.AccountMapper;
 import com.eduromero.accounts.mapper.CustomerMapper;
@@ -20,6 +21,7 @@ import java.util.Random;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class AccountServiceImpl implements IAccountService {
 
     private AccountRepository accountRepository;
@@ -53,7 +55,6 @@ public class AccountServiceImpl implements IAccountService {
         newAccount.setAccountNumber(randomAccNumber);
         newAccount.setAccountType(AccountConstants.SAVINGS);
         newAccount.setBranchAddress(AccountConstants.ADDRESS);
-        newAccount.setMobileNumber(customer.getMobileNumber());
         return newAccount;
     }
 
