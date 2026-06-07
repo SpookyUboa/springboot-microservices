@@ -70,7 +70,7 @@ public class LoanController {
     )
     @PostMapping("/create")
     public ResponseEntity<ResponseDTO> createLoan(@RequestParam
-                                                  @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
+                                                  @Pattern(regexp="(^$|[0-9]{9})",message = "Mobile number must be 9 digits digits")
                                                   String mobileNumber) {
         iLoanService.createLoan(mobileNumber);
         return ResponseEntity
@@ -98,7 +98,7 @@ public class LoanController {
     )
     @GetMapping("/fetch")
     public ResponseEntity<LoanDTO> fetchLoanDetails(@RequestParam
-                                                     @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
+                                                     @Pattern(regexp="(^$|[0-9]{9})",message = "Mobile number must be 9 digits digits")
                                                      String mobileNumber) {
         LoanDTO loansDTO = iLoanService.fetchLoan(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK).body(loansDTO);
@@ -164,7 +164,7 @@ public class LoanController {
     )
     @DeleteMapping("/delete")
     public ResponseEntity<ResponseDTO> deleteLoanDetails(@RequestParam
-                                                         @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
+                                                         @Pattern(regexp="(^$|[0-9]{9})",message = "Mobile number must be 9 digits digits")
                                                          String mobileNumber) {
         boolean isDeleted = iLoanService.deleteLoan(mobileNumber);
         if(isDeleted) {
