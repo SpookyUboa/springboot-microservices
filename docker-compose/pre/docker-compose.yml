@@ -30,7 +30,7 @@ services:
       service: microservice-db-config
 
   configserver:
-    image: "eduardojrl/configserver:1.3"
+    image: "eduardojrl/configserver:1.4"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -45,7 +45,7 @@ services:
       service: microservice-base-config
 
   accounts:
-    image: "eduardojrl/accounts:1.3"
+    image: "eduardojrl/accounts:1.4"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -62,7 +62,7 @@ services:
       service: microservice-configserver-config
 
   loans:
-    image: "eduardojrl/loans:1.3"
+    image: "eduardojrl/loans:1.4"
     container_name: loans-ms
     ports:
       - "8090:8090"
@@ -79,7 +79,7 @@ services:
       service: microservice-configserver-config
 
   cards:
-    image: "eduardojrl/cards:1.3"
+    image: "eduardojrl/cards:1.4"
     container_name: cards-ms
     ports:
       - "9000:9000"
