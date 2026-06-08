@@ -30,7 +30,7 @@ services:
       service: microservice-db-config
 
   configserver:
-    image: "eduardojrl/configserver:1.4"
+    image: "eduardojrl/configserver:1.5"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -45,7 +45,7 @@ services:
       service: microservice-base-config
 
   eurekaserver:
-    image: "eduardojrl/eurekaserver:1.4"
+    image: "eduardojrl/eurekaserver:1.5"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -65,7 +65,7 @@ services:
       SPRING_APPLICATION_NAME: "eurekaserver"
 
   accounts:
-    image: "eduardojrl/accounts:1.4"
+    image: "eduardojrl/accounts:1.5"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -82,7 +82,7 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "eduardojrl/loans:1.4"
+    image: "eduardojrl/loans:1.5"
     container_name: loans-ms
     ports:
       - "8090:8090"
@@ -99,7 +99,7 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: "eduardojrl/cards:1.4"
+    image: "eduardojrl/cards:1.5"
     container_name: cards-ms
     ports:
       - "9000:9000"

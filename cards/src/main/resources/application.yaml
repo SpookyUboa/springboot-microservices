@@ -40,7 +40,7 @@ info:
   app:
     name: "cards"
     description: "Evil Ass Banking Cards Application"
-    version: "1.4"
+    version: "1.5"
 
 server:
   port: 9000

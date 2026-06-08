@@ -40,7 +40,7 @@ info:
   app:
     name: "accounts"
     description: "Evil Ass Banking Accounts Application"
-    version: "1.4"
+    version: "1.5"
 
 server:
   port: 8080

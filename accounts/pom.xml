@@ -124,7 +124,7 @@
 				<version>3.5.1</version>
 				<configuration>
 					<to>
-						<image>eduardojrl/${project.artifactId}:1.4</image>
+						<image>eduardojrl/${project.artifactId}:1.5</image>
 					</to>
 				</configuration>
 			</plugin>

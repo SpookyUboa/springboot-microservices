@@ -40,7 +40,7 @@ info:
   app:
     name: "loans"
     description: "Evil Ass Banking Loans Application"
-    version: "1.4"
+    version: "1.5"
 
 server:
   port: 8090
