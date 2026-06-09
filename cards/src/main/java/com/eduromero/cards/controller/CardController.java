@@ -16,6 +16,8 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -35,6 +37,8 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class CardController {
 
+    private static final Logger logger = LoggerFactory.getLogger(CardController.class);
+
     private final ICardService iCardService;
 
     @Value("${build.version}")
@@ -42,7 +46,7 @@ public class CardController {
 
     @Autowired
     private Environment environment;
-    
+
     @Autowired
     private CardsContactInfoDto contactInfoDto;
 
@@ -66,7 +70,7 @@ public class CardController {
     )
     @PostMapping("/create")
     public ResponseEntity<ResponseDTO> createCard(@Valid @RequestParam
-                                                  @Pattern(regexp="(^$|[0-9]{9})",message = "Mobile number must be 9 digits digits")
+                                                  @Pattern(regexp = "(^$|[0-9]{9})", message = "Mobile number must be 9 digits digits")
                                                   String mobileNumber) {
         iCardService.createCard(mobileNumber);
         return ResponseEntity
@@ -92,9 +96,11 @@ public class CardController {
             )
     })
     @GetMapping("/fetch")
-    public ResponseEntity<CardDTO> fetchCardDetails(@RequestParam
-                                                     @Pattern(regexp="(^$|[0-9]{9})",message = "Mobile number must be 9 digits digits")
-                                                     String mobileNumber) {
+    public ResponseEntity<CardDTO> fetchCardDetails(@RequestHeader("evilAssBanking-correlation-id") String correlationId,
+                                                    @RequestParam
+                                                    @Pattern(regexp = "(^$|[0-9]{9})", message = "Mobile number must be 9 digits digits")
+                                                    String mobileNumber) {
+        logger.debug("evilAssBanking-correlation-id found: {}", correlationId);
         CardDTO cardsDTO = iCardService.fetchCard(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK).body(cardsDTO);
     }
@@ -123,11 +129,11 @@ public class CardController {
     @PutMapping("/update")
     public ResponseEntity<ResponseDTO> updateCardDetails(@Valid @RequestBody CardDTO cardsDTO) {
         boolean isUpdated = iCardService.updateCard(cardsDTO);
-        if(isUpdated) {
+        if (isUpdated) {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(new ResponseDTO(CardConstants.STATUS_200, CardConstants.MESSAGE_200));
-        }else{
+        } else {
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
                     .body(new ResponseDTO(CardConstants.STATUS_417, CardConstants.MESSAGE_417_UPDATE));
@@ -157,14 +163,14 @@ public class CardController {
     })
     @DeleteMapping("/delete")
     public ResponseEntity<ResponseDTO> deleteCardDetails(@RequestParam
-                                                         @Pattern(regexp="(^$|[0-9]{9})",message = "Mobile number must be 9 digits digits")
+                                                         @Pattern(regexp = "(^$|[0-9]{9})", message = "Mobile number must be 9 digits digits")
                                                          String mobileNumber) {
         boolean isDeleted = iCardService.deleteCard(mobileNumber);
-        if(isDeleted) {
+        if (isDeleted) {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(new ResponseDTO(CardConstants.STATUS_200, CardConstants.MESSAGE_200));
-        }else{
+        } else {
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
                     .body(new ResponseDTO(CardConstants.STATUS_417, CardConstants.MESSAGE_417_DELETE));

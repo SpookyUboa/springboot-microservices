@@ -11,6 +11,6 @@ public interface ICustomerService {
      * @return Customer Details based on a given mobileNumber
      *
      */
-    CustomerDetailsDTO fetchCustomerDetails(String mobileNumber);
+    CustomerDetailsDTO fetchCustomerDetails(String mobileNumber, String correlationId);
 
 }

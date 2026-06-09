@@ -29,3 +29,9 @@ info:
     name: "Gateway Server"
     description: "Evil Ass Banking Gateway Server Application"
     version: "1.5"
+
+logging:
+  level:
+    com:
+      eduromero:
+        gatewayserver: DEBUG

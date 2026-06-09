@@ -16,6 +16,8 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -39,6 +41,8 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class LoanController {
 
+    private static final Logger logger = LoggerFactory.getLogger(LoanController.class);
+
     private final ILoanService iLoanService;
 
     @Value("${build.version}")
@@ -46,7 +50,7 @@ public class LoanController {
 
     @Autowired
     private Environment environment;
-    
+
     @Autowired
     private LoansContactInfoDto contactInfoDto;
 
@@ -70,7 +74,7 @@ public class LoanController {
     )
     @PostMapping("/create")
     public ResponseEntity<ResponseDTO> createLoan(@RequestParam
-                                                  @Pattern(regexp="(^$|[0-9]{9})",message = "Mobile number must be 9 digits digits")
+                                                  @Pattern(regexp = "(^$|[0-9]{9})", message = "Mobile number must be 9 digits digits")
                                                   String mobileNumber) {
         iLoanService.createLoan(mobileNumber);
         return ResponseEntity
@@ -97,9 +101,12 @@ public class LoanController {
     }
     )
     @GetMapping("/fetch")
-    public ResponseEntity<LoanDTO> fetchLoanDetails(@RequestParam
-                                                     @Pattern(regexp="(^$|[0-9]{9})",message = "Mobile number must be 9 digits digits")
-                                                     String mobileNumber) {
+    public ResponseEntity<LoanDTO> fetchLoanDetails(
+            @RequestHeader("evilAssBanking-correlation-id") String correlationId,
+            @RequestParam
+            @Pattern(regexp = "(^$|[0-9]{9})", message = "Mobile number must be 9 digits digits")
+            String mobileNumber) {
+        logger.debug("evilAssBanking-correlation-id found: {}", correlationId);
         LoanDTO loansDTO = iLoanService.fetchLoan(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK).body(loansDTO);
     }
@@ -129,11 +136,11 @@ public class LoanController {
     @PutMapping("/update")
     public ResponseEntity<ResponseDTO> updateLoanDetails(@Valid @RequestBody LoanDTO loansDTO) {
         boolean isUpdated = iLoanService.updateLoan(loansDTO);
-        if(isUpdated) {
+        if (isUpdated) {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(new ResponseDTO(LoanConstants.STATUS_200, LoanConstants.MESSAGE_200));
-        }else{
+        } else {
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
                     .body(new ResponseDTO(LoanConstants.STATUS_417, LoanConstants.MESSAGE_417_UPDATE));
@@ -164,14 +171,14 @@ public class LoanController {
     )
     @DeleteMapping("/delete")
     public ResponseEntity<ResponseDTO> deleteLoanDetails(@RequestParam
-                                                         @Pattern(regexp="(^$|[0-9]{9})",message = "Mobile number must be 9 digits digits")
+                                                         @Pattern(regexp = "(^$|[0-9]{9})", message = "Mobile number must be 9 digits digits")
                                                          String mobileNumber) {
         boolean isDeleted = iLoanService.deleteLoan(mobileNumber);
-        if(isDeleted) {
+        if (isDeleted) {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(new ResponseDTO(LoanConstants.STATUS_200, LoanConstants.MESSAGE_200));
-        }else{
+        } else {
             return ResponseEntity
                     .status(HttpStatus.EXPECTATION_FAILED)
                     .body(new ResponseDTO(LoanConstants.STATUS_417, LoanConstants.MESSAGE_417_DELETE));
