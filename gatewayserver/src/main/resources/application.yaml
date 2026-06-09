@@ -5,9 +5,11 @@ spring:
     import: "optional:configserver:http://localhost:8071/"
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
 
 management:
   endpoints:
