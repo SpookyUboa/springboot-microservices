@@ -5,18 +5,18 @@ import com.eduromero.accounts.entity.Account;
 
 public class AccountMapper {
 
-    public static AccountDTO mapToAccountDTO(Account account, AccountDTO accountDto) {
-        accountDto.setAccountNumber(account.getAccountNumber());
-        accountDto.setAccountType(account.getAccountType());
-        accountDto.setBranchAddress(account.getBranchAddress());
-        return accountDto;
+    public static AccountDTO mapToAccountDTO(Account account, AccountDTO accountDTO) {
+        accountDTO.setAccountNumber(account.getAccountNumber());
+        accountDTO.setAccountType(account.getAccountType());
+        accountDTO.setBranchAddress(account.getBranchAddress());
+        return accountDTO;
     }
 
 
-    public static Account mapToAccount(AccountDTO accountDto, Account account) {
-        account.setAccountNumber(accountDto.getAccountNumber());
-        account.setAccountType(accountDto.getAccountType());
-        account.setBranchAddress(accountDto.getBranchAddress());
+    public static Account mapToAccount(AccountDTO accountDTO, Account account) {
+        account.setAccountNumber(accountDTO.getAccountNumber());
+        account.setAccountType(accountDTO.getAccountType());
+        account.setBranchAddress(accountDTO.getBranchAddress());
         return account;
     }
 
