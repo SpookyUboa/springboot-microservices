@@ -45,7 +45,7 @@ public class AccountServiceImpl implements AccountService {
         Account account = new Account();
         account.setCustomerId(customer.getCustomerId());
         long randomAccNumber = 1000000000L + new Random().nextInt(900000000);
-        account.setAccountNumber(randomAccNumber);
+        account.setAccountNumber(String.valueOf(randomAccNumber));
         account.setAccountType(Constants.SAVINGS);
         account.setBranchAddress(Constants.ADDRESS);
         account.setCreatedAt(LocalDateTime.now());
@@ -73,7 +73,7 @@ public class AccountServiceImpl implements AccountService {
         boolean isUpdated = false;
         AccountDTO accountDTO = customerDTO.getAccountDTO();
         if(accountDTO != null) {
-            Account account = accountRepository.findById(accountDTO.getAccountNumber()).orElseThrow(
+            Account account = accountRepository.findById(Long.parseLong(accountDTO.getAccountNumber())).orElseThrow(
                     () -> new ResourceNotFoundException("Account", "AccountNumber", accountDTO.getAccountNumber().toString())
             );
             AccountMapper.mapToAccount(accountDTO, account);
