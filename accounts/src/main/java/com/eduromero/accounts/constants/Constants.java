@@ -12,5 +12,8 @@ public class Constants {
     public static final String MESSAGE_200 = "Request processed successfully";
     public static final String STATUS_500 = "500";
     public static final String MESSAGE_500 = "Request failed";
+    public static final String STATUS_417 = "417";
+    public static final String MESSAGE_417_UPDATE = "Update operation could not be completed. Expectation failed";
+    public static final String MESSAGE_417_DELETE = "Delete operation could not be completed. Expectation failed";
 
 }
