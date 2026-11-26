@@ -10,8 +10,8 @@ public interface AccountService {
     void createAccount(CustomerDTO customerDTO);
 
     /**
-     * @param phoneNumber - Customer's phone number
-     * @return Customer's data
+     * @param phoneNumber - Victim's phone number
+     * @return Victim's data
      */
     CustomerDTO getAccount(String phoneNumber);
 
@@ -19,14 +19,12 @@ public interface AccountService {
      * @param customerDTO - Customer's data
      * @return boolean indicating operation result
      */
-
     boolean updateAccount(CustomerDTO customerDTO);
 
     /**
      * @param phoneNumber - Customer's phone number
      * @return boolean indicating operation result
      */
-
     boolean deleteAccount(String phoneNumber);
 
 }

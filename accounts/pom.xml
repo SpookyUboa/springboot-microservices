@@ -11,8 +11,8 @@
 	<groupId>com.eduromero</groupId>
 	<artifactId>accounts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
+	<name>accounts</name>
+	<description>Accounts microservice</description>
 	<url/>
 	<licenses>
 		<license/>

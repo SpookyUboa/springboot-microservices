@@ -1,4 +1,4 @@
-package com.eduromero.accounts.service;
+package com.eduromero.accounts.service.impl;
 
 import com.eduromero.accounts.constants.Constants;
 import com.eduromero.accounts.dto.AccountDTO;
@@ -11,10 +11,10 @@ import com.eduromero.accounts.mapper.AccountMapper;
 import com.eduromero.accounts.mapper.CustomerMapper;
 import com.eduromero.accounts.repository.AccountRepository;
 import com.eduromero.accounts.repository.CustomerRepository;
+import com.eduromero.accounts.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Random;
 
@@ -39,6 +39,7 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.save(createNewAccount(savedCustomer));
     }
 
+
     private Account createNewAccount(Customer customer) {
         Account account = new Account();
         account.setCustomerId(customer.getCustomerId());
@@ -49,6 +50,10 @@ public class AccountServiceImpl implements AccountService {
         return account;
     }
 
+    /**
+     * @param phoneNumber - Victim's phone number
+     * @return Victim's data
+     */
     @Override
     public CustomerDTO getAccount(String phoneNumber) {
         Customer customer = customerRepository.findByPhoneNumber(phoneNumber).orElseThrow(
@@ -64,6 +69,10 @@ public class AccountServiceImpl implements AccountService {
         return customerDTO;
     }
 
+    /**
+     * @param customerDTO - Customer's data
+     * @return boolean indicating operation result
+     */
     @Override
     public boolean updateAccount(CustomerDTO customerDTO) {
         boolean isUpdated = false;
@@ -88,6 +97,10 @@ public class AccountServiceImpl implements AccountService {
         return isUpdated;
     }
 
+    /**
+     * @param phoneNumber - Customer's phone number
+     * @return boolean indicating operation result
+     */
     @Override
     public boolean deleteAccount(String phoneNumber) {
         Customer customer = customerRepository.findByPhoneNumber(phoneNumber).orElseThrow(
